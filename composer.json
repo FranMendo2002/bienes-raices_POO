@@ -1,0 +1,12 @@
+{
+    "name": "fran/bienesraices_poo",
+    "description": "Creando un proyecto con POO",
+    "type": "project",
+    "authors": [
+        {
+            "name": "FranMendo2002",
+            "email": "franmendozita123@gmail.com"
+        }
+    ],
+    "require": {}
+}

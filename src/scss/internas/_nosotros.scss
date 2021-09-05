@@ -1,0 +1,15 @@
+.seccion-nosotros {
+    .sobre-nosotros {
+        @include tablet {
+            @include grid(2, 2rem);
+        }
+        .nosotros-texto {
+            text-align: center;
+            
+            h3 {
+                font-weight: $bold;
+                margin: 0;
+            }
+        }
+    }
+}
