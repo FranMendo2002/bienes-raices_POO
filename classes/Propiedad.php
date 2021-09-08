@@ -38,7 +38,7 @@ class Propiedad {
             $this->wc = $args["wc"] ?? '';
             $this->estacionamiento = $args["estacionamiento"] ?? '';
             $this->creado = date('Y/m-d');
-            $this->vendedorId = $args["vendedorId"] ?? '';
+            $this->vendedorId = $args["vendedorId"] ?? 1;
         }
 
         public function guardar() {
@@ -124,7 +124,8 @@ class Propiedad {
         // Listar todas las propiedades
         public static function all() {
             $query = "SELECT * FROM propiedades";
-            self::consultarSQL($query);
+            $resultado = self::consultarSQL($query);
+            return $resultado;
         }
 
         public static function consultarSQL($query) {
@@ -135,10 +136,12 @@ class Propiedad {
             while($registro = $resultado->fetch_assoc() ) {
                 $array[] = self::crearObjeto($registro);
             }
-            debugear($array);
+
             // Liberar la memoria
+            $resultado->free();
 
             // Retornar los resultados
+            return $array;
         }
 
         protected static function crearObjeto($registro) {
