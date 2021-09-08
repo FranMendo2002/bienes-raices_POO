@@ -1,15 +1,12 @@
 <?php
 
-    require '../includes/funciones.php';
-    $auth = estaAutenticado();
+    require '../includes/app.php';
+    estaAutenticado();
 
-    if(!$auth){
-        header('Location: /');
-    }
+    use App\Propiedad;
 
-    // Importar la conexion
-    require '../includes/config/database.php';
-    $db = conectarDB();
+    // Implementar un método para obtener las propiedades
+    $propiedades = Propiedad::all();
 
     // Escribir el Query
     $query = "SELECT * FROM propiedades";
