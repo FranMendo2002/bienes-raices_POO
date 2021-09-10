@@ -42,11 +42,13 @@ class Propiedad {
         }
 
         public function guardar() {
-            if( isset($this->id) ) { // Actualizando - Devuelve true si la variable existe y tiene un valor distinto de null, false de lo contrario.
-                $this->actualizar();
+            if( empty($this->id) ) { // Actualizando - Devuelve true si la variable esta vacia
+                $resultado = $this->crear();
+                
             } else { // Creando
-                $this->crear();
+                $resultado = $this->actualizar();
             }
+            return $resultado;
         }
 
         public function actualizar() {
@@ -100,18 +102,18 @@ class Propiedad {
 
         // Subida de archivos
         public function setImagen($imagen) {
-            // Eimina la imagen previa
-            if( isset($this->id) ) {
-                // Comprobar si existe una imagen
-                $existeImg = file_exists(CARPETA_IMAGENES . $this->imagen);
-                if($existeImg) {
-                    unlink(CARPETA_IMAGENES . $this->imagen);
-                }
-            }
             // Asignamos al atributo el nombre de la imagen
-            if($imagen) {
-                $this->imagen = $imagen;
+            // Eimina la imagen previa
+            $existeImg = file_exists(CARPETA_IMAGENES . $this->imagen);
+            if( $existeImg ) { // Si existe la imagen. En el crear todavia no esta subida asi que no entraria aca
+                unlink(CARPETA_IMAGENES . $this->imagen);
             }
+
+            if($imagen) {
+                    $this->imagen = $imagen;
+                }
+
+            
         }
 
         // Validación

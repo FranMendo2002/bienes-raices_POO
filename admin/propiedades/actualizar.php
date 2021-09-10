@@ -30,26 +30,24 @@ require '../../includes/app.php';
 
     // Ejecutar el codigo después de que el usuario envia el formulario
     if ($_SERVER["REQUEST_METHOD"] === 'POST') {
-
         // Asignar los atributos
         $propiedad->sincronizar($_POST);
 
         // Validamos
         $errores = $propiedad->validar();
 
-        // Generar un nombre unico
-        $nombreImagen = md5( uniqid( rand(), true ) ) . ".jpg";
-
-        // Subida de archivos
-        if($_FILES["imagen"]["tmp_name"]){
-            $image = Image::make($_FILES["imagen"]["tmp_name"])->fit(800, 600);
-            $propiedad->setImagen($nombreImagen);
-        }
-
         // Revisar que el arreglo de errores esté vacio
         if (empty($errores)) {
-            // Almacenar la imagen
-            $image->save(CARPETA_IMAGENES . $nombreImagen);
+            // Generar un nombre unico
+            $nombreImagen = md5( uniqid( rand(), true ) ) . ".jpg";
+
+            // Subida de archivos
+            if($_FILES["imagen"]["tmp_name"]){
+                $image = Image::make($_FILES["imagen"]["tmp_name"])->fit(800, 600);
+                $propiedad->setImagen($nombreImagen);
+                // Almacenar la imagen
+                $image->save(CARPETA_IMAGENES . $nombreImagen);
+            }
 
             // Guardar los datos
             $resultado = $propiedad->guardar();

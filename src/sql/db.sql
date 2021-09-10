@@ -22,7 +22,7 @@ USE `bienes_raices` ;
 -- Table `bienes_raices`.`vendedores`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `bienes_raices`.`vendedores` (
-  `id` INT(11) NOT NULL,
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
   `nombre` VARCHAR(45) NULL DEFAULT NULL,
   `apellido` VARCHAR(45) NULL DEFAULT NULL,
   `telefono` VARCHAR(10) NULL DEFAULT NULL,
@@ -73,3 +73,16 @@ DEFAULT CHARACTER SET = utf8;
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
+
+-- -----------------------------------------------------
+-- Data for table `bienes_raices`.`vendedores`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `bienes_raices`;
+INSERT INTO `bienes_raices`.`vendedores` (`id`, `nombre`, `apellido`, `telefono`) VALUES (1001, 'Franco', 'Mendoza', '1131284592');
+INSERT INTO `bienes_raices`.`vendedores` (`id`, `nombre`, `apellido`, `telefono`) VALUES (DEFAULT, 'Juan', 'De la Torre', '1193884729');
+INSERT INTO `bienes_raices`.`vendedores` (`id`, `nombre`, `apellido`, `telefono`) VALUES (DEFAULT, 'Maria', 'Perez', '1128447556');
+INSERT INTO `bienes_raices`.`vendedores` (`id`, `nombre`, `apellido`, `telefono`) VALUES (DEFAULT, 'Sandra', 'Lino', '1178446997');
+
+COMMIT;
+
