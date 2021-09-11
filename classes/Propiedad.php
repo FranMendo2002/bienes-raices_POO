@@ -90,6 +90,16 @@ class Propiedad {
             }
             return $atributos;
         }
+        
+        // Eliminar un registro
+        public function eliminar() {
+            $query = "DELETE FROM propiedades WHERE id = " . self::$db->escape_string($this->id) . " LIMIT 1";
+            $resultado = self::$db->query($query);
+            if($resultado) {
+                $this->borrarImagen();
+                header('Location: /admin?resultado=3');
+            }
+        }
 
         public function sanitizarDatos() {
             $atributos = $this->atributos();
@@ -104,16 +114,18 @@ class Propiedad {
         public function setImagen($imagen) {
             // Asignamos al atributo el nombre de la imagen
             // Eimina la imagen previa
+            $this->borrarImagen();
+            if($imagen) {
+                    $this->imagen = $imagen;
+                }
+        }
+
+        // Eliminar archivo
+        public function borrarImagen() {
             $existeImg = file_exists(CARPETA_IMAGENES . $this->imagen);
             if( $existeImg ) { // Si existe la imagen. En el crear todavia no esta subida asi que no entraria aca
                 unlink(CARPETA_IMAGENES . $this->imagen);
             }
-
-            if($imagen) {
-                    $this->imagen = $imagen;
-                }
-
-            
         }
 
         // Validación
