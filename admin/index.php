@@ -4,6 +4,7 @@
     estaAutenticado();
 
     use App\Propiedad;
+    use App\Vendedor;
 
     // Implementar un método para obtener las propiedades
     $propiedades = Propiedad::all();
