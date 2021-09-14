@@ -4,4 +4,17 @@ namespace App;
 
 class Vendedor extends ActiveRecord {
     public static $tabla = 'vendedores';
+    protected static $columnasDB = ['id', 'nombre', 'apellido', 'telefono'];
+
+    public $id;
+    public $nombre;
+    public $apellido;
+    public $telefono;
+
+    public function _construct($args = []) {
+        $this->id = $args["id"] ?? '';
+        $this->nombre = $args["nombre"] ?? '';
+        $this->apellido = $args["apellido"] ?? '';
+        $this->telefono = $args["telefono"] ?? '';
+    }
 }

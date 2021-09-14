@@ -8,6 +8,7 @@
 
     // Implementar un método para obtener las propiedades
     $propiedades = Propiedad::all();
+    $vendedores = Vendedor::all();
 
     // Muestra mensaje condicional
     $resultado = $_GET['resultado'] ?? null; // Revisa si existe el get, si no, asigna null
