@@ -2,5 +2,6 @@ node_modules
 .DS_Store
 info.php
 imagenes
+src/img
 
 /vendor/
