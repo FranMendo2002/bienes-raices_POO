@@ -44,14 +44,11 @@
 <main class="contenedor seccion">
     <h1>Administrador de Bienes Raices</h1>
 
-    <?php
-        if( intval($resultado) === 1): ?>
-            <p class="alerta exito">Registro Creado Correctamente</p>
-        <?php elseif( intval($resultado) === 2):?>
-            <p class="alerta actualizado">Registro Actualizado Correctamente</p>
-        <?php elseif( intval($resultado) === 3): ?>
-            <p class="alerta eliminado">Registro Eliminado Correctamente</p>
-        <?php endif; ?>
+    <?php 
+            $mensaje = mostrarMensaje(intval($resultado));
+            if( !empty($mensaje) ): ?>
+                <p class="alerta <?php echo s($mensaje[1]); ?>"><?php echo s($mensaje[0]) ?></p>
+    <?php   endif; ?>
 
     <a href="/admin/propiedades/crear.php" class="boton boton-verde">Nueva Propiedad</a>
     <a href="/admin/vendedores/crear.php" class="boton boton-amarillo">Nuevo Vendedor</a>
