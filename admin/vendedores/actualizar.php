@@ -6,17 +6,35 @@
     use Intervention\Image\ImageManagerStatic as Image;
     estaAutenticado();
 
-    $vendedor = new Vendedor;
+    // Validar que sea un ID valido
+    $id = filter_var($_GET['id'], FILTER_VALIDATE_INT);
+
+    if(!$id) {
+        header('Location: /admin');
+    }
+
+    $vendedor = Vendedor::find($id);
 
     $errores = Vendedor::getErrores();
 
     if($_SERVER["REQUEST_METHOD"] === 'POST') {
-        $vendedor = new Vendedor($_POST);
-        $nombreImagen = md5( uniqid( rand(), true) ) . ".jpg";
         
-        if($_FILES["imagen"]["tmp_name"]) {
-            $image = Image::make($_FILES["imagen"]["tmp_name"])->fit(800, 600);
-            $vendedor->setImagen($nombreImagen);
+        $vendedor->sincronizar($_POST);
+
+        // Validacion
+        $errores = $vendedor->validar();
+
+        if( empty($errores) ) {
+            $nombreImagen = md5( uniqid( rand(), true) ) . ".jpg";
+            
+            if($_FILES["imagen"]["tmp_name"]) {
+                $image = Image::make($_FILES["imagen"]["tmp_name"])->fit(800, 600);
+                $vendedor->borrarImagen();
+                $vendedor->setImagen($nombreImagen);
+                $image->save(CARPETA_IMAGENES . $nombreImagen);
+            }
+            // Guardar los datos
+            $vendedor->guardar();
         }
         
         
