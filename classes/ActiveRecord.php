@@ -88,12 +88,11 @@ class Activerecord {
 
         // Subida de archivos
         public function setImagen($imagen) {
-            // Asignamos al atributo el nombre de la imagen
-            // Eimina la imagen previa
-            $this->borrarImagen();
             if($imagen) {
                     $this->imagen = $imagen;
                 }
+            // Asignamos al atributo el nombre de la imagen
+            // Eimina la imagen previa
         }
 
         // Eliminar archivo

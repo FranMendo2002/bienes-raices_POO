@@ -2,10 +2,10 @@
             <legend>Información General</legend>
 
             <label for="titulo">Título:</label>
-            <input name="titulo" type="text" id="titulo" placeholder="Título de la propiedad" value="<?php echo s($propiedad->titulo); ?>">
+            <input name="titulo" type="text" id="titulo" placeholder="Título de la propiedad (max. 60)" value="<?php echo s($propiedad->titulo); ?>">
 
             <label for="precio">Precio:</label>
-            <input name="precio" type="number" id="precio" placeholder="Precio de la propiedad" value="<?php echo s($propiedad->precio); ?>">
+            <input name="precio" type="number" id="precio" placeholder="Precio de la propiedad (max. 10)" value="<?php echo s($propiedad->precio); ?>">
 
             <label for="imagen">Imagen:</label>
             <input name="imagen" type="file" id="imagen" accept="image/jpeg, image/png">

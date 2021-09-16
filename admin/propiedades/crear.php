@@ -18,7 +18,7 @@
     // Ejecutar el codigo después de que el usuario envia el formulario
     if ($_SERVER["REQUEST_METHOD"] === 'POST') {
         $propiedad = new Propiedad($_POST);
-
+        
         // Generar un nombre unico
         $nombreImagen = md5( uniqid( rand(), true ) ) . ".jpg";
 
@@ -39,11 +39,11 @@
                 mkdir(CARPETA_IMAGENES);
             }
             
-            // Guardar la imagen en el servidor
-            $image->save(CARPETA_IMAGENES . $nombreImagen);
             $resultado = $propiedad->guardar();
-
+            
             if ($resultado) {
+                // Guardar la imagen en el servidor
+                $image->save(CARPETA_IMAGENES . $nombreImagen);
                 // Redireccionar al usuario
                 header('Location: /admin?resultado=1');
             }

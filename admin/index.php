@@ -54,6 +54,7 @@
         <?php endif; ?>
 
     <a href="/admin/propiedades/crear.php" class="boton boton-verde">Nueva Propiedad</a>
+    <a href="/admin/vendedores/crear.php" class="boton boton-amarillo">Nuevo Vendedor</a>
 
     <h2>Propiedades</h2>
 
@@ -98,6 +99,7 @@
                 <th>Nombre</th>
                 <th>Apellido</th>
                 <th>Teléfono</th>
+                <th>Imagen</th>
                 <th>Acciones</th>
             </tr>
         </thead>
@@ -109,6 +111,7 @@
                     <td> <?php echo $vendedor->nombre ?> </td>
                     <td> <?php echo $vendedor->apellido ?> </td>
                     <td> <?php echo $vendedor->telefono ?> </td>
+                    <td><img src="/imagenes/<?php echo $vendedor->imagen ?>" class="imagen-tabla"></td>
                     <td>
                         <form method="POST" class="w-100">
                             <input type="hidden" name="id" value="<?php echo $vendedor->id; ?>">

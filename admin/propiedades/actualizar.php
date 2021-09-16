@@ -41,6 +41,7 @@ require '../../includes/app.php';
             // Subida de archivos
             if($_FILES["imagen"]["tmp_name"]){
                 $image = Image::make($_FILES["imagen"]["tmp_name"])->fit(800, 600);
+                $propiedad->borrarImagen();
                 $propiedad->setImagen($nombreImagen);
                 // Almacenar la imagen
                 $image->save(CARPETA_IMAGENES . $nombreImagen);
