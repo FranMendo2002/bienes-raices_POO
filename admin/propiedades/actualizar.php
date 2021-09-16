@@ -1,6 +1,8 @@
 <?php
 
 use App\Propiedad;
+use App\Vendedor;
+
 use Intervention\Image\ImageManagerStatic as Image;
 
 require '../../includes/app.php';
@@ -16,17 +18,12 @@ require '../../includes/app.php';
         header('Location: /admin');
     }
 
-    // Consultar para obtener los vendedores
-    $query = "SELECT * FROM vendedores";
-    $resultadoVendedor = mysqli_query($db, $query);
-
     // Obtener los datos de la propiedad
     $propiedad = Propiedad::find($id);
-
+    $vendedores = Vendedor::all();
 
     // Areglo con mensajes de errores
     $errores = Propiedad::getErrores();
-
 
     // Ejecutar el codigo después de que el usuario envia el formulario
     if ($_SERVER["REQUEST_METHOD"] === 'POST') {

@@ -27,6 +27,8 @@ table.propiedades {
     margin-top: 4rem;
     width: 100%;
     border-spacing: 0;
+    text-align: center;
+    border-collapse: collapse;
 
     thead {
         background-color: $grisOscuro;
@@ -35,6 +37,14 @@ table.propiedades {
             color: $blanco;
             padding: 2rem;
         }
+    }
+
+    tbody {
+        tr {
+            background-color: $grisClaro;
+            border: 1px solid $grisOscuro;
+        }
+        
     }
     
     .imagen-tabla {

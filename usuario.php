@@ -1,7 +1,7 @@
 <?php
 
     // Importar la conexion
-    require 'includes/app.php';
+    require '/includes/app.php';
     $db = conectarDB();
 
     // Crear un email y password
@@ -12,7 +12,7 @@
     $passwordHash = password_hash($password, PASSWORD_BCRYPT);
 
     // Query para crear el usuario
-    $query = "INSERT INTO usuarios (email, password) VALUES( '${email}', '${passwordHash}' )";
+    $query = "INSERT INTO usuario (email, password) VALUES( '${email}', '${passwordHash}' )";
     //echo $query;
 
     // Agregarlo a la Base de Datos
